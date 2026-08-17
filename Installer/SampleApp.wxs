@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Product Id="*"
+           Name="SampleApp"
+           Language="1033"
+           Version="1.0.0.0"
+           Manufacturer="Chanresmey Samirth - Swinburne"
+           UpgradeCode="DA5D0D63-C153-488B-89A1-8458920E26D8">
+
+    <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="SampleApp" />
+      </Directory>
+    </Directory>
+
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="cmpSampleAppExe" Guid="1E74A5F4-5B9F-4413-B195-A8C0CCCDC578">
+        <File Id="filSampleAppExe"
+              Source="$(var.BinDir)\SampleApp.exe"
+              KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="ProductFeature" Title="SampleApp" Level="1">
+      <ComponentRef Id="cmpSampleAppExe" />
+    </Feature>
+
+  </Product>
+</Wix>

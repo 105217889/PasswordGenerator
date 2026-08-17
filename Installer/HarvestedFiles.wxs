@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Component Id="cmpBC4FC00A26E7D32479D42D3411317FC5" Guid="B83A2D99-7256-467A-86C7-3798005BC5D5">
+                <File Id="fil90A8AAD9FC612906D405476D61CEA3F4" KeyPath="yes" Source="$(var.BinDir)\Newtonsoft.Json.dll" />
+            </Component>
+            <Component Id="cmp125C379E185231EFADA4CB4301BD0A9E" Guid="B91C6F80-6554-4C81-94DA-535C2D77C4DA">
+                <File Id="fil3A2F44A7730E98D18E0948B3261DFABD" KeyPath="yes" Source="$(var.BinDir)\Newtonsoft.Json.xml" />
+            </Component>
+            <Component Id="cmp198266817F8EF5D616E7A9AC27A9F451" Guid="881AFD8F-A0CD-4EAE-B9D9-4B3D6B043F90">
+                <File Id="fil6A41DDDBD145E671AFD6DF3DDA1CABE1" KeyPath="yes" Source="$(var.BinDir)\PassGen.Core.dll" />
+            </Component>
+            <Component Id="cmp72643918FDF9E89FF1BC08784A42012D" Guid="E673FBD0-F2E0-44EE-B1A8-8F31809813C5">
+                <File Id="filF2F743C7EBE44C4F4AF588D764DF19DD" KeyPath="yes" Source="$(var.BinDir)\PassGen.Core.pdb" />
+            </Component>
+            <Component Id="cmp43A0E1E3DD797071C46493AC9B80B8CA" Guid="2C2E82CF-8047-4927-90A5-36C4038898AB">
+                <File Id="filE75950385CB297EADB97A72487236D34" KeyPath="yes" Source="$(var.BinDir)\PassGen.exe" />
+            </Component>
+            <Component Id="cmp4D12E7E09C1E82CB6C65BD7CC2A24189" Guid="39571E58-0EC6-41D0-963A-B457C24ECD96">
+                <File Id="fil0F015BE375266828FFD7CEDB62D5A01F" KeyPath="yes" Source="$(var.BinDir)\PassGen.exe.config" />
+            </Component>
+            <Component Id="cmp2FAEB31A6263EA608462307F33A49DB2" Guid="6709D370-FF23-4CAF-A0CD-FE37623C9DA6">
+                <File Id="filE3AB662CA9FB4D947E980E855ED27BAB" KeyPath="yes" Source="$(var.BinDir)\PassGen.pdb" />
+            </Component>
+            <Component Id="cmpBB1C353CA8510F9D98C5398EE1DB5787" Guid="B5F3868D-41B8-4009-A1E3-F44F442FA681">
+                <File Id="filC4BEBEAF444A2BD4E189E4B6F0EA778C" KeyPath="yes" Source="$(var.BinDir)\PassGen.Strength.dll" />
+            </Component>
+            <Component Id="cmp5F949A0307413E2AD608D4C9882544D1" Guid="22820083-5D6E-4E7A-91EF-D6E94C85C6B9">
+                <File Id="fil73AE79C847756404A016488C860BDF56" KeyPath="yes" Source="$(var.BinDir)\PassGen.Strength.pdb" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="PassGenFiles">
+            <ComponentRef Id="cmpBC4FC00A26E7D32479D42D3411317FC5" />
+            <ComponentRef Id="cmp125C379E185231EFADA4CB4301BD0A9E" />
+            <ComponentRef Id="cmp198266817F8EF5D616E7A9AC27A9F451" />
+            <ComponentRef Id="cmp72643918FDF9E89FF1BC08784A42012D" />
+            <ComponentRef Id="cmp43A0E1E3DD797071C46493AC9B80B8CA" />
+            <ComponentRef Id="cmp4D12E7E09C1E82CB6C65BD7CC2A24189" />
+            <ComponentRef Id="cmp2FAEB31A6263EA608462307F33A49DB2" />
+            <ComponentRef Id="cmpBB1C353CA8510F9D98C5398EE1DB5787" />
+            <ComponentRef Id="cmp5F949A0307413E2AD608D4C9882544D1" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

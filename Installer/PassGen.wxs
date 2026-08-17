@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Product Id="*"
+           Name="Password Generator"
+           Language="1033"
+           Version="1.0.0.0"
+           Manufacturer="Chanresmey Samrith - Swinburne"
+           UpgradeCode="68F0A1B9-2EF5-455A-AD56-59111DD8F950">
+
+    <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine"
+             Description="Cryptographically secure password generator" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+    <Property Id="ARPHELPLINK" Value="https://github.com/105217889/PasswordGenerator" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/105217889/PasswordGenerator" />
+
+    <!-- Installer wizard UI -->
+    <UIRef Id="WixUI_Minimal" />
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+
+    <!-- System dependency check: refuse to install without .NET Framework 4.8 -->
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_48_OR_LATER_INSTALLED" />
+    <Condition Message="This application requires .NET Framework 4.8 or later.">
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_48_OR_LATER_INSTALLED]]>
+    </Condition>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="Password Generator" />
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="AppShortcutFolder" Name="Password Generator" />
+      </Directory>
+    </Directory>
+
+    <!-- One file per component: each gets its own GUID and its own KeyPath -->
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="cmpPassGenExe" Guid="C6F456D6-CF92-47C3-8FBE-96822F88E27B">
+        <File Id="filPassGenExe"
+              Source="$(var.BinDir)\PassGen.exe" KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpPassGenExeConfig" Guid="48156E8B-2B2A-4806-96D2-40A544407725">
+        <File Id="filPassGenExeConfig"
+              Source="$(var.BinDir)\PassGen.exe.config" KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpPassGenCore" Guid="809B39B0-060A-42ED-AD87-644F90C1CB2D">
+        <File Id="filPassGenCore"
+              Source="$(var.BinDir)\PassGen.Core.dll" KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpPassGenStrength" Guid="C0BAEA87-7E91-4A9E-AD14-85387310851C">
+        <File Id="filPassGenStrength"
+              Source="$(var.BinDir)\PassGen.Strength.dll" KeyPath="yes" />
+      </Component>
+
+      <Component Id="cmpNewtonsoftJson" Guid="75B0F8D0-C896-4743-9A2B-E94696C24393">
+        <File Id="filNewtonsoftJson"
+              Source="$(var.BinDir)\Newtonsoft.Json.dll" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="AppShortcutFolder">
+      <Component Id="cmpStartMenuShortcut" Guid="19C52259-F84B-4930-81B5-12DF597719BE">
+        <Shortcut Id="sctPassGen"
+                  Name="Password Generator"
+                  Target="[INSTALLFOLDER]PassGen.exe"
+                  WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="rmvAppShortcutFolder" Directory="AppShortcutFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Chan\PasswordGenerator"
+                       Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="ProductFeature" Title="Password Generator" Level="1">
+      <ComponentRef Id="cmpPassGenExe" />
+      <ComponentRef Id="cmpPassGenExeConfig" />
+      <ComponentRef Id="cmpPassGenCore" />
+      <ComponentRef Id="cmpPassGenStrength" />
+      <ComponentRef Id="cmpNewtonsoftJson" />
+      <ComponentRef Id="cmpStartMenuShortcut" />
+    </Feature>
+
+  </Product>
+</Wix>

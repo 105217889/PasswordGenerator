@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="PassGen.Core/PassGen.Core.csproj" Id="06d1ce1d-aefe-4b6c-86d4-af16c7095d52" />
+  <Project Path="PassGen.Strength/PassGen.Strength.csproj" Id="2026ff25-f300-40db-ba33-5fbef9bbfb6f" />
+  <Project Path="PassGen/PassGen.csproj" Id="46ef16d6-5597-428c-a7e4-0089a2948127" />
+  <Project Path="SampleApp/SampleApp.csproj" Id="10b026ca-58a7-41f9-a724-f4cff8d9b225" />
+</Solution>
